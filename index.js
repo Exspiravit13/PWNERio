@@ -23,6 +23,7 @@ app.get('/welcome', function (req, res) {
 });
 
 
+/* Catch every request with prefix /static so we can serve the static stuff */
 app.get('/static/*', (req, res) => {
   fs.readFile(`.${req.url}`, (err, data) => {
     if(err){
