@@ -1,0 +1,23 @@
+{
+  "name": "pwner.io",
+  "version": "1.0.0",
+  "description": "PWNER.io website source for devs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exspiravit13/PWNER.io.git"
+  },
+  "author": "PWNER Dev Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Exspiravit13/PWNER.io/issues"
+  },
+  "homepage": "https://github.com/Exspiravit13/PWNER.io#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}

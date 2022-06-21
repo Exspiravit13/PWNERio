@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<% include('./templates/credits.html') %>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="PWNER.IO is the latest up and coming cyber marketplace for all your pwning needs!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="/static/assets/logo.png" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="icon" href="/static/assets/pwner.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <link rel="stylesheet" href="/static/constants.css" />
+    <title>PWNER.IO</title>
+</head>
+
+<body>
+    {% include 'nav.html' %}
+    <div class="site-wrap">
+
+        <div class="main mw-2">
+            <h1 class="text-center"> Welcome To <label class="red">PWNER</label></h1>
+            <p class="mb-2 text-center">Site is under construction and isnt completely live. You may still check out some of our pages to see what
+            we're up to.
+            </p>
+
+            <h1 class="red text-left mt-2 mb-half">PWNER</h1>
+            <table class="mainTable text-left mb-2" id="pinned-pages">
+                <tr>
+                    <th>Name</th>
+                    <th>User</th>
+                    <th>Created</th>
+                </tr>
+            </table>
+
+            <h1 class="red text-left mt-2 mb-half">FORUM</h1>
+            <table class="mainTable text-left" id="posts">
+                <tr>
+                    <th>Name</th>
+                    <th>User</th>
+                    <th>Created</th>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</body>
+<script>
+    const months = {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December"
+    };
+    
+    function displayPinned(pinned) {
+        for(var i of pinned){
+            let newPost = document.createElement("tr");
+            let converted_time = i.created.split(" ")[0];
+            converted_time = converted_time.split("-");
+            let time = `${months[parseInt(converted_time[1])]} ${parseInt(converted_time[2])}, ${converted_time[0]}`;
+            let name = i.name;
+            let user = i.author;
+            let pid  = i.id;
+            let tr = `<td><a href="/f/${pid}" class="pg">${name}</a></td> <td><a href="/u/${name}" class="pg">${user}</a></td> <td>${time}</td>`;
+            $(newPost).html(`${tr}`);
+            $("#pinned-pages").append(newPost);
+        }
+    }
+    $(document).ready(function() {
+        fetch("https://HardtofindUnkemptMainframe.exspiravit13.repl.co/static/data/pinned.json")
+        .then(response => response.json())
+        .then(data => displayPinned(data));
+    })
+</script>
+</html>
