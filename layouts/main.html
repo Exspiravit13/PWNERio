@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="PWNER.IO is the latest up and coming cyber marketplace for all your pwning needs!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="/static/assets/logo.png" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="icon" href="/static/assets/pwner.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <link rel="stylesheet" href="/static/constants.css" />
+    <title>PWNER.IO</title>
+</head>
+<body>
+    <!-- NAV -->
+    <ul class="navigation">
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/">PWNER.IO</a></li>
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/tos">TOS</a></li>
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/about">ABOUT</a></li>
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/market">MARKET</a></li>
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/login">LOGIN</a></li>
+        <li class="nav-item noSelect hover-scale-up transition"><a href="/register">REGISTER</a></li>
+    </ul>
+    <input type="checkbox" id="nav-trigger" class="nav-trigger"></input>
+    <label for="nav-trigger"></label>
+    <!-- END NAV -->
+    {%layout_content%}
+</body>
+</html>
