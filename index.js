@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = (`path`);
 
 
-
 // on the request to root (localhost:8000/)
 app.get('/', function (req, res) {
   fs.readFile('./templates/home.html', 'utf8', (err, data) => {
