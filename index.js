@@ -2,6 +2,7 @@
 import express from 'express';
 import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
+import * as mime from 'mime-types';
 
 const app = express();
 const devMode = true;
@@ -29,6 +30,11 @@ app.get('/static/*', (req, res) => {
     if(err){
       res.status(404).send("Not found");
       return;
+    }
+
+    const mimeType = mime.lookup(req.url);
+    if(mimeType){
+      res.setHeader('Content-Type', mimeType);
     }
     res.status(200).send(data.toString());
   });
