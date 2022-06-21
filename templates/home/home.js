@@ -26,4 +26,4 @@ page.renderFn = function(html){
     });
 }
 
-export const HomePage = page;;
+export const HomePage = page;
