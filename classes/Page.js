@@ -12,7 +12,7 @@ export default class {
         image: "image"
     };
 
-    _renderFn = (html)=>{ return new Promise((resolve, reject)=>{ resolve(html); }); };
+    _renderFn = (html, request)=>{ return new Promise((resolve, reject)=>{ resolve(html); }); };
 
     constructor(identifier){
         //This should be the name of the folder and the html file too
@@ -58,11 +58,11 @@ export default class {
 
     }
 
-    render(){
+    render(request){
         return new Promise(async (resolve, reject)=>{
             let html = "";
             /* We do the render function which should be defined at implementation of the class */
-            const rendered = await this._renderFn(this._htmlstring);
+            const rendered = await this._renderFn(this._htmlstring, request);
             try{
                 /* Check if we have a layout, and a valid one */
                 if(this._layout){

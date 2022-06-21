@@ -10,7 +10,7 @@ page.metadata = {
     image: "/static/assets/logo.png"
 }
 
-page.renderFn = function(html){
+page.renderFn = function(html, request){
     return new Promise((resolve, reject) => {
         page.load().then(()=>{
             setTimeout(() => {
