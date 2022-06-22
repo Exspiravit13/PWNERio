@@ -37,7 +37,7 @@ app.get('/static/*', (req, res) => {
     if(mimeType){
       res.setHeader('Content-Type', mimeType);
     }
-    res.status(200).send(data.toString());
+    res.status(200).send(data);
   });
 });
 
