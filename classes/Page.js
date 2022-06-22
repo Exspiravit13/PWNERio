@@ -29,7 +29,7 @@ export default class {
             fs.readFile(`./templates/${this._id}/${this._htmlfile}`, (err, data) => {
                 if(err){
                     this._htmlstring = "";
-                    return;
+                    resolve();
                 }
                 this._htmlstring = data.toString();
                 resolve();
