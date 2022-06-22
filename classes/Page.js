@@ -64,6 +64,7 @@ export default class {
             /* We do the render function which should be defined at implementation of the class */
             await this.load();
             const rendered = await this._renderFn(this._htmlstring, request);
+            console.log(rendered);
             try{
                 /* Check if we have a layout, and a valid one */
                 if(this._layout){
@@ -94,7 +95,7 @@ export default class {
         /* Get every instance where we possibly want to insert variables */
         const regexp = new RegExp('({%.*%})');
         const matches = regexp.exec(string);
-        if(matches == null) return;
+        if(matches == null) return string;
         matches.forEach((match) => {
             try{
                 /*
