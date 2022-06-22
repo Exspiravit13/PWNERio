@@ -11,7 +11,8 @@ const devMode = true;
 // on the request to root (localhost:8000/)
 app.get('/', async (req, res) => {
   try{
-    const result = await HomePage.render(req);
+    const home = HomePage();
+    const result = await home.render(req);
     res.status(200).send(result);
   }catch(e){
     res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");

@@ -1,29 +1,25 @@
 import Page from "../../classes/Page.js"
 
-const page = new Page("home");
+export const HomePage = function(){
+    const page = new Page("home");
 
-page.layout = "main";
+    page.layout = "main";
 
-page.metadata = {
-    title: "PWNER.IO",
-    description: "PWNER.IO is the latest up and coming cyber marketplace for all your pwning needs!",
-    image: "/static/assets/logo.png"
-}
+    page.metadata = {
+        title: "PWNER.IO",
+        description: "PWNER.IO is the latest up and coming cyber marketplace for all your pwning needs!",
+        image: "/static/assets/logo.png"
+    }
 
-page.renderFn = function(html, request){
-    return new Promise((resolve, reject) => {
-        page.load().then(()=>{
+    page.renderFn = function(html, request){
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
                 //get sum data etc
-                const data = {
-                    something: "yes"
-                };
-
-                html = Page.insertData(html, data);
+                html = Page.insertData(html);
                 resolve(html);
             }, 241);
         });
-    });
-}
+    }
 
-export const HomePage = page;
+    return page; 
+};

@@ -62,6 +62,7 @@ export default class {
         return new Promise(async (resolve, reject)=>{
             let html = "";
             /* We do the render function which should be defined at implementation of the class */
+            await this.load();
             const rendered = await this._renderFn(this._htmlstring, request);
             try{
                 /* Check if we have a layout, and a valid one */
