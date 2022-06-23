@@ -11,11 +11,5 @@ export const NotFound = function(){
         image: "/static/assets/logo.png"
     }
 
-    page.renderFn = function(html, request){
-        return new Promise((resolve, reject) => {
-            resolve(html);
-        });
-    }
-
     return page; 
 };
