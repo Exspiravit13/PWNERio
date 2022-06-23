@@ -13,7 +13,6 @@ export const HomePage = function(){
 
     page.renderFn = function(html, request){
         return new Promise((resolve, reject) => {
-            html = Page.insertData(html);
             resolve(html);
         });
     }

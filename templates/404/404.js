@@ -1,6 +1,6 @@
 import Page from "../../classes/Page.js"
 
-export const HomePage = function(){
+export const NotFound = function(){
     const page = new Page("404");
 
     page.layout = "main";
@@ -13,11 +13,7 @@ export const HomePage = function(){
 
     page.renderFn = function(html, request){
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                //get sum data etc
-                html = Page.insertData(html);
-                resolve(html);
-            }, 241);
+            resolve(html);
         });
     }
 

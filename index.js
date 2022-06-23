@@ -2,6 +2,7 @@
 import express from 'express';
 import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
+import { NotFound } from './templates/404/404.js';
 import * as mime from 'mime-types';
 
 const app = express();
@@ -29,7 +30,13 @@ app.get('/welcome', function (req, res) {
 app.get('/static/*', (req, res) => {
   fs.readFile(`.${req.url}`, (err, data) => {
     if(err){
-      res.status(404).send("Not found");
+      try{
+        const page = NotFound();
+        const result = await page.render(req);
+        res.status(200).send(result);
+      }catch(e){
+        res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
+      }
       return;
     }
 
@@ -43,7 +50,13 @@ app.get('/static/*', (req, res) => {
 
 // Change the 404 message modifing the middleware
 app.use(function(req, res, next) {
-    res.status(404).send('./templates/404/404.html');
+  try{
+    const page = NotFound();
+    const result = await page.render(req);
+    res.status(200).send(result);
+  }catch(e){
+    res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
+  }
 });
 
 // start the server in the port 8000 !
