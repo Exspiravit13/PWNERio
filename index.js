@@ -27,8 +27,8 @@ app.get('/welcome', function (req, res) {
 
 
 /* Catch every request with prefix /static so we can serve the static stuff */
-app.get('/static/*', (req, res) => {
-  fs.readFile(`.${req.url}`, (err, data) => {
+app.get('/static/*', async (req, res) => {
+  fs.readFile(`.${req.url}`, async (err, data) => {
     if(err){
       try{
         const page = NotFound();
@@ -49,7 +49,7 @@ app.get('/static/*', (req, res) => {
 });
 
 // Change the 404 message modifing the middleware
-app.use(function(req, res, next) {
+app.use(async function(req, res, next) {
   try{
     const page = NotFound();
     const result = await page.render(req);
