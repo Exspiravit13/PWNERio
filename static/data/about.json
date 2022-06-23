@@ -1,0 +1,55 @@
+[
+    {
+        "name": "a1fa",
+        "position": "CEO & Founder",
+        "description": "\"I don't hide behind binaries. I am the 0's and 1's.\"",
+        "icon_url": "",
+        "socials": {
+            "discord": null,
+            "github": null,
+            "twitter": "https://twitter.com/A1FAxPWNER",
+            "instagram": "https://instagram.com/a1faxpwner",
+            "website": null
+        }
+    },
+    {
+        "name": "rn",
+        "position": "Developer",
+        "description": "Backend developer and frontend designer for pwner.io",
+        "icon_url": "",
+        "socials": {
+            "discord": null,
+            "github": null,
+            "twitter": null,
+            "instagram": null,
+            "website": null
+        }
+    },
+    {
+        "name": "Kestron",
+        "position": "Dead Weight",
+        "description": "The guy who sits there and pretends he knows what he's doing.",
+        "icon_url": "",
+        "socials": {
+            "discord": null,
+            "github": null,
+            "twitter": null,
+            "instagram": null,
+            "website": null
+        }
+    },
+    {
+        "name": "Khaled",
+        "position": "Developer",
+        "description": "Frontend designer for pwner.io",
+        "icon_url": "",
+        "socials": {
+            "discord": null,
+            "github": null,
+            "twitter": null,
+            "instagram": null,
+            "website": null
+        }
+    }
+  
+]

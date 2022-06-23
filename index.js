@@ -43,7 +43,7 @@ app.get('/static/*', (req, res) => {
 
 // Change the 404 message modifing the middleware
 app.use(function(req, res, next) {
-    res.status(404).send("404.html");
+    res.status(404).send('./templates/404/404.html');
 });
 
 // start the server in the port 8000 !
