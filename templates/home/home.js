@@ -13,11 +13,8 @@ export const HomePage = function(){
 
     page.renderFn = function(html, request){
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                //get sum data etc
-                html = Page.insertData(html);
-                resolve(html);
-            }, 241);
+            html = Page.insertData(html);
+            resolve(html);
         });
     }
 

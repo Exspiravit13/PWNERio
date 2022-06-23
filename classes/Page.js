@@ -112,7 +112,7 @@ export default class {
                 });
                 string = string.replace(match, currentValue);
             }catch(e){
-                console.log(e);
+                console.log(e.toString());
             }
             
         });
