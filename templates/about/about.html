@@ -45,7 +45,7 @@
         }
     }
     $(document).ready(function() {
-        fetch("https://ProperLumberingClient.spirate.repl.co/static/data/about.json")
+        fetch('./static/data/about.json')
         .then(response => response.json())
         .then(data => displayPinned(data));
     })

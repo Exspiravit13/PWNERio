@@ -1,12 +1,39 @@
+// Import packages
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
+
 // Require express and create an instance of it
 import express from 'express';
 import fs from 'fs';
+
+
+
+import { About } from '../templates/about/about.js';
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import * as mime from 'mime-types';
 
+import { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE,} from 'process.env';
+
 const app = express();
 const devMode = true;
+
+dotenv.config();
+
+
+const con = mysql.createConnection({
+  host: DB_HOST,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  database: DB_DATABASE,
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected to database");
+});
 
 
 // on the request to root (localhost:8000/)
