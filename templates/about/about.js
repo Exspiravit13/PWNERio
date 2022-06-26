@@ -1,6 +1,6 @@
 import Page from "../../classes/Page.js"
 
-export const about = function(){
+export const About = function(){
     const page = new Page("about");
 
     page.layout = "main";
