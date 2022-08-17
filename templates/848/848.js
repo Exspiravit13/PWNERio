@@ -1,7 +1,7 @@
 import Page from "../../classes/Page.js"
 
 export const P848 = function(){
-    const page = new Page("p848");
+    const page = new Page("848");
 
     page.layout = "main";
 
