@@ -4,19 +4,33 @@ import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import * as mime from 'mime-types';
+import { P848 } from './templates/848/p848.js';
 
 const app = express();
 const devMode = true;
 
+const handleRouteError = (req, res, e) => {
+  res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
+}
 
 // on the request to root (localhost:8000/)
 app.get('/', async (req, res) => {
   try{
-    const home = HomePage();
-    const result = await home.render(req);
+    const page = HomePage();
+    const result = await page.render(req);
     res.status(200).send(result);
   }catch(e){
-    res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
+    handleRouteError(req, res, e);
+  }
+});
+
+app.get('/848', async (req, res) => {
+  try{
+    const page = P848();
+    const result = await page.render(req);
+    res.status(200).send(result);
+  }catch(e){
+    handleRouteError(req, res, e);
   }
 });
 
