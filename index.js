@@ -4,14 +4,14 @@ import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import * as mime from 'mime-types';
-import { P848 } from './templates/848/p848.js';
+import { P848 } from './templates/848/848.js';
 
 const app = express();
 const devMode = true;
 
 const handleRouteError = (req, res, e) => {
   res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
-}
+};
 
 // on the request to root (localhost:8000/)
 app.get('/', async (req, res) => {
