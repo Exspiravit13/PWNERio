@@ -2,7 +2,9 @@ app.get('/', site.index);
 
 // User
 
-app.get('./home/templates/home.html');
+app.get('./templates/home.html');
+app.get(' ./templates/blank.html');
+app.grt('./templates/login.html')
 //app.all('/user/:id/:op?', user.load);
 //app.get('/user/:id', user.view);
 //app.get('/user/:id/view', user.view);

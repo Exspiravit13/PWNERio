@@ -4,7 +4,9 @@ import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import * as mime from 'mime-types';
-import { P848 } from './templates/848/848.js';
+import { PFoE } from './templates/f.o.e/FoE.js';
+import { login } from './templates/login/login.js'
+ 
 
 const app = express();
 const devMode = true;
@@ -24,9 +26,19 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/848', async (req, res) => {
+app.get('/f.o.e', async (req, res) => {
   try{
-    const page = P848();
+    const page = PFoE();
+    const result = await page.render(req);
+    res.status(200).send(result);
+  }catch(e){
+    handleRouteError(req, res, e);
+  }
+});
+
+app.get('/login', async (req, res) => {
+  try{
+    const page = login();
     const result = await page.render(req);
     res.status(200).send(result);
   }catch(e){
