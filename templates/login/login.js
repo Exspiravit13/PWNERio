@@ -3,7 +3,7 @@ import Page from "../../classes/Page.js"
 export const login = function(){
     const page = new Page("login");
 
-    page.layout = "login";
+    page.layout = "blank";
 
     page.metadata = {
         title: "Login",

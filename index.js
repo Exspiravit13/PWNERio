@@ -1,19 +1,66 @@
 // Require express and create an instance of it
 import express from 'express';
 import fs from 'fs';
+import mysql from 'mysql2';
+import * as mime from 'mime-types';
+import cors from 'cors';
+import cookieSession from 'cookie-session';
+import db from './config/db.config.js';
+
+
+//Import pages
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
-import * as mime from 'mime-types';
 import { PFoE } from './templates/f.o.e/FoE.js';
-import { login } from './templates/login/login.js'
- 
+import { login } from './templates/login/login.js';
+import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE, DB_POOL, DB_DIALECT } from './config/db.config.js';
 
-const app = express();
+
+const app = express(
+  require('./routes/auth.routes.js'),
+  require('./routes/user.routes.js'),
+);
+app.use(cors);
+db.sequelize.sync();
+
 const devMode = true;
+
+
+// DB initialization
+const connection = mysql.createConnection ({
+  host : DB_HOST,
+  port : DB_PORT,
+  user : DB_USER,
+  password : DB_PASSWORD,
+  database : DB_DATABASE, 
+  pool : DB_POOL,
+  dialect : DB_DIALECT,
+});
+
+connection.connect((err) => {
+  if(err) throw err;
+  console.log("Connected to database")
+})
+
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  cookieSession({
+    name: "pwnerio-session",
+    secret: "COOKIE_SECRET", // should use as secret environment variable
+    httpOnly: true
+  })
+);
+
 
 const handleRouteError = (req, res, e) => {
   res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
 };
+
 
 // on the request to root (localhost:8000/)
 app.get('/', async (req, res) => {
@@ -84,6 +131,7 @@ app.use(async function(req, res, next) {
     res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
   }
 });
+
 
 // start the server in the port 8000 !
 app.listen(8000,function () {
