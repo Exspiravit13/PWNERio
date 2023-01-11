@@ -1,4 +1,4 @@
-import { authJwt } from "../middleware/authJwt";
+import { authJwt } from "../middleware/authJwt.js";
 import { allAccess, userBoard, moderatorBoard, adminBoard } from "../controllers/user.controller.js";
 
 export default function(app) {

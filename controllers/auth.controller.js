@@ -1,13 +1,15 @@
-import db from "../models";
-import { User, Role } from "../models";
+import db from "../models/index.js";
 
 const Role = db.role;
-const User = db.role
+const User = db.user;
 
 const Op = db.Sequelize.Op;
 
-import { sign } from "jsonwebtoken";
-import { hashSync, compareSync } from "bcryptjs";
+import pkg1 from 'jsonwebtoken';
+const { sign } = pkg1;
+
+import pkg from 'bcryptjs';
+const { hashSync, compareSync } = pkg;
 
 export async function signup(req, res) {
   // Save User to Database

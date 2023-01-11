@@ -1,9 +1,12 @@
-import { Jwt } from "jsonwebtoken";
-import { config } from "../config/auth.config.js";
-import { db } from "../models";
+import pkg  from "jsonwebtoken";
+const { Jwt } = pkg
+import config from '../config/auth.config.js'
+import { Database } from "../models/index.js";
 
-const User = db.user;
-const Roles = db.role;
+const User = Database.user;
+const Roles = Database.role;
+
+
 
 verifyToken = (req, res, next) => {
   let token = req.session.token;

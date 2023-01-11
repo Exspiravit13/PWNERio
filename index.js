@@ -6,6 +6,7 @@ import * as mime from 'mime-types';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
 import db from './config/db.config.js';
+import  Sequelize  from 'sequelize';
 
 
 //Import pages
@@ -13,28 +14,28 @@ import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import { PFoE } from './templates/f.o.e/FoE.js';
 import { login } from './templates/login/login.js';
-import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE, DB_POOL, DB_DIALECT } from './config/db.config.js';
+import { HOST, PORT, USER, PASSWORD, DB, pool, dialect } from './config/db.config.js';
 
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
 
-const app = express(
-  require('./routes/auth.routes.js'),
-  require('./routes/user.routes.js'),
-);
+const app = express({
+});
 app.use(cors);
-db.sequelize.sync();
+db.Sequelize.sync();
 
 const devMode = true;
 
 
 // DB initialization
 const connection = mysql.createConnection ({
-  host : DB_HOST,
-  port : DB_PORT,
-  user : DB_USER,
-  password : DB_PASSWORD,
-  database : DB_DATABASE, 
-  pool : DB_POOL,
-  dialect : DB_DIALECT,
+  host : HOST,
+  port : PORT,
+  user : USER,
+  password : PASSWORD,
+  database : DB, 
+  pool : pool,
+  dialect : dialect,
 });
 
 connection.connect((err) => {
