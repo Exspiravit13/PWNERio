@@ -1,11 +1,10 @@
 import pkg  from "jsonwebtoken";
 const { Jwt } = pkg
-import config from '../config/auth.config.js'
+import secret from '../config/auth.config.js'
 import { Database } from "../models/index.js";
 
 const User = Database.user;
 const Roles = Database.role;
-
 
 
 verifyToken = (req, res, next) => {
@@ -17,7 +16,7 @@ verifyToken = (req, res, next) => {
     });
   }
 
-  verify(token, config.secret, (err, decoded) => {
+  verify(token, secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
         message: "Unauthorized!",
