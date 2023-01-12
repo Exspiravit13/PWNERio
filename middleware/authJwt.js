@@ -1,10 +1,11 @@
 import pkg  from "jsonwebtoken";
-const { Jwt } = pkg
-import secret from '../config/auth.config.js'
-import { Database } from "../models/index.js";
+const { jwt } = pkg;
 
-const User = Database.user;
-const Roles = Database.role;
+import config from '../config/auth.config.js';
+import db from "../models/index.js";
+
+const User = db.user;
+
 
 
 verifyToken = (req, res, next) => {
@@ -16,7 +17,7 @@ verifyToken = (req, res, next) => {
     });
   }
 
-  verify(token, secret, (err, decoded) => {
+  jwtverify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
         message: "Unauthorized!",
@@ -95,10 +96,10 @@ isModeratorOrAdmin = async (req, res, next) => {
 };
 
 const authJwt = {
-  verifyToken,
-  isAdmin,
-  isModerator,
-  isModeratorOrAdmin,
+  verifyToken: verifyToken,
+  isAdmin: isAdmin,
+  isModerator: isModerator,
+  isModeratorOrAdmin: isModeratorOrAdmin,
 };
 
-export default authJwt;
+export default authJwt();

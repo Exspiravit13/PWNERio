@@ -14,7 +14,7 @@ import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import { PFoE } from './templates/f.o.e/FoE.js';
 import { login } from './templates/login/login.js';
-import { HOST, PORT, USER, PASSWORD, DB, pool, dialect } from './config/db.config.js';
+//import { HOST, PORT, USER, PASSWORD, DB, pool, dialect } from './config/db.config.js';
 
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -27,16 +27,7 @@ db.Sequelize.sync();
 const devMode = true;
 
 
-// DB initialization
-const connection = mysql.createConnection ({
-  host : HOST,
-  port : PORT,
-  user : USER,
-  password : PASSWORD,
-  database : DB, 
-  pool : pool,
-  dialect : dialect,
-});
+
 
 connection.connect((err) => {
   if(err) throw err;

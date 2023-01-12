@@ -1,7 +1,7 @@
 import { DB, USER, PASSWORD, HOST, dialect as _dialect, pool as _pool } from "../config/db.config.js";
 
 import Sequelize from "sequelize";
-export const Database = new Sequelize(
+export const sequelize = new Sequelize(
   DB,
   USER,
   PASSWORD,
@@ -22,10 +22,10 @@ export const Database = new Sequelize(
 const db = {};
 
 db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+db.sequelize = Sequelize;
 
-db.user = require("../models/user.model.js").default(sequelize, Sequelize);
-db.role = require("../models/role.model.js").default(sequelize, Sequelize);
+db.user = require("./user.model.js").default(sequelize, Sequelize);
+db.role = require("./role.model.js").default(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",

@@ -13,3 +13,5 @@ export function adminBoard(req, res) {
 export function moderatorBoard(req, res) {
     res.status(200).send("Moderator Content.");
   }
+
+export default usercontroller();

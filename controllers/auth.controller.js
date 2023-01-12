@@ -1,4 +1,5 @@
 import db from "../models/index.js";
+import config from '../config/auth.config.js';
 
 const Role = db.role;
 const User = db.user;
@@ -43,7 +44,7 @@ export async function signup(req, res) {
 
 export async function signin(req, res) {
   try {
-    const user = await User.findOne({
+    var user = await User.findOne({
       where: {
         username: req.body.username,
       },
@@ -51,9 +52,9 @@ export async function signin(req, res) {
 
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
-    }
+    };
 
-    const passwordIsValid = compareSync(
+    var passwordIsValid = compareSync(
       req.body.password,
       user.password
     );
@@ -64,7 +65,7 @@ export async function signin(req, res) {
       });
     }
 
-    const token = sign({ id: user.id }, secret, {
+    var token = jwt.sign({ id: user.id }, config.secret, {
       expiresIn: 86400, // 24 hours
     });
 
@@ -81,6 +82,7 @@ export async function signin(req, res) {
       username: user.username,
       email: user.email,
       roles: authorities,
+      accessToken: token,
     });
   } catch (error) {
     return res.status(500).send({ message: error.message });
@@ -97,3 +99,4 @@ export async function signout(req, res) {
     this.next(err);
   }
 }
+export default authcontroller();
