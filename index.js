@@ -9,6 +9,7 @@ import db from './config/db.config.js';
 import  Sequelize  from 'sequelize';
 
 
+
 //Import pages
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
