@@ -7,6 +7,7 @@ import fs from 'fs';
 import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import { P848 } from './templates/848/848.js';
+import { login } from  './templates/login/login.js';
 import { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_DIALECT } from './config/db.config.js';
 import secret from './config/auth.config.js';
 
@@ -78,6 +79,17 @@ app.get('/848', async (req, res) => {
     handleRouteError(req, res, e);
   }
 });
+
+app.get('/login', async (req, res) => {
+  try{
+    const page = login();
+    const result = await page.render(req);
+    res.status(200).send(result);
+  }catch(e){
+    handleRouteError(req, res, e);
+  }
+});
+
 
 // On localhost:8000/welcome
 app.get('/welcome', function (req, res) {
