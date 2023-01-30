@@ -1,7 +1,10 @@
 import verifySignUp from "../middleware/verifySignup.js";
 import  controller  from "../controllers/auth.controller.js";
+import { application } from "express";
 
-module.exports = function(app) {
+
+
+function authRoute(app = application) {
   app.use(function(req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",

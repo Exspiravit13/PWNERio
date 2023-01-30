@@ -8,7 +8,7 @@ import { HomePage } from './templates/home/home.js';
 import { NotFound } from './templates/404/404.js';
 import { P848 } from './templates/848/848.js';
 import { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_DIALECT } from './config/db.config.js';
-import { secret } from './config/auth.config.js';
+import secret from './config/auth.config.js';
 
 // Import Packages
 import mysql from 'mysql2';
@@ -16,6 +16,11 @@ import * as mime from 'mime-types';
 import Sequelize  from 'sequelize';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
+
+
+// Import custom modules
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
 
 const app = express();
 app.use(cors);
@@ -117,3 +122,5 @@ app.use(async function(req, res, next) {
 app.listen(8000,function () {
     console.log('HTTPS server running on port 8000.');
 });
+
+export default app;

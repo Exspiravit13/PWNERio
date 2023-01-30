@@ -1,6 +1,9 @@
 import db from "../models/index.js";
 import config from '../config/auth.config.js';
-import { sign } from 'jsonwebtoken';
+
+import Jwt from "jsonwebtoken";
+const { sign } = Jwt
+
 import { hashSync, compareSync } from "bcrypt";
 
 
@@ -62,7 +65,7 @@ export async function signin(req, res) {
       });
     }
 
-    var token = jwt.sign({ id: user.id }, config.secret, {
+    var token = Jwt.sign({ id: user.id }, config.secret, {
       expiresIn: 86400, // 24 hours
     });
 
@@ -96,4 +99,10 @@ export async function signout(req, res) {
     this.next(err);
   }
 }
-export default authcontroller();
+
+const authcontroller = {
+    signup: signup,
+    signin: signin,
+    signout: signout
+}
+export default authcontroller;

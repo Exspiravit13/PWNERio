@@ -1,7 +1,8 @@
 import authJWT from "../middleware/authJWT.js";
 import controller from "../controllers/user.controller.js";
+import { application } from "express";
 
-module.exports = function(app) {
+function userRoute(app = application) {
   app.use(function(req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",

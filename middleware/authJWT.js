@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import { secret } from '../config/auth.config.js';
+import  secret  from '../config/auth.config.js';
 import db from "../models/index.js";
 
 const User = db.user;
 
-verifyToken = (req, res, next) => {
+function verifyToken(req, res, next) {
   let token = req.session.token;
 
   if (!token) {
@@ -24,7 +24,7 @@ verifyToken = (req, res, next) => {
   });
 };
 
-isAdmin = async (req, res, next) => {
+async function isAdmin(req, res, next) {
   try {
     const user = await user.findByPk(req.userId);
     const roles = await user.getRoles();
@@ -45,7 +45,7 @@ isAdmin = async (req, res, next) => {
   }
 };
 
-isModerator = async (req, res, next) => {
+async function isModerator(req, res, next) {
   try {
     const user = await user.findByPk(req.userId);
     const roles = await user.getRoles();
@@ -66,7 +66,7 @@ isModerator = async (req, res, next) => {
   }
 };
 
-isModeratorOrAdmin = async (req, res, next) => {
+async function isModeratorOrAdmin (req, res, next) {
   try {
     const user = await User.findByPk(req.userId);
     const roles = await user.getRoles();
@@ -98,4 +98,4 @@ const authJwt = {
   isModeratorOrAdmin: isModeratorOrAdmin,
 };
 
-export default authJwt();
+export default authJwt;
