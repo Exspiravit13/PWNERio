@@ -17,6 +17,8 @@ import * as mime from 'mime-types';
 import Sequelize  from 'sequelize';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
+import bcrypt from 'bcrypt';
+
 
 
 // Import custom modules
@@ -36,7 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cookieSession({
-    name: "pwnerio-session",
+    name: "PWNaERio",
     secret: `${secret}`, // should use as secret environment variable
     httpOnly: true
   })
@@ -46,6 +48,8 @@ const handleRouteError = (req, res, e) => {
   res.status(500).send((devMode) ? e.toString() : "Server error, please try again later.");
 };
 
+
+
 const sequelize = new Sequelize ( `${DB_DATABASE}`, `${DB_USER}`, `${DB_PASSWORD}`, {
   host : DB_HOST,
   dialect : `${DB_DIALECT}`
@@ -53,7 +57,7 @@ const sequelize = new Sequelize ( `${DB_DATABASE}`, `${DB_USER}`, `${DB_PASSWORD
 
 try {
   await sequelize.authenticate();
-  console.log(`Databse: ${DB_DATABASE}.`);
+  console.log(`Database: ${DB_DATABASE}.`);
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }

@@ -3,7 +3,6 @@ import  controller  from "../controllers/auth.controller.js";
 import { application } from "express";
 
 
-
 function authRoute(app = application) {
   app.use(function(req, res, next) {
     res.header(

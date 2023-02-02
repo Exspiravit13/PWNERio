@@ -7,7 +7,6 @@ import  * as _pool  from "sequelize";
 const sequelize = new Sequelize ( `${DB_DATABASE}`, `${DB_USER}`, `${DB_PASSWORD}`, {
     host : DB_HOST,
     dialect : `${DB_DIALECT}`, 
-    operatorsAliases : false,
 
     PoolOptions: {
         max: _pool.max,
@@ -28,9 +27,6 @@ db.user = User(sequelize, Sequelize)
 
 import Role from './role.model.js';
 db.role = Role(sequelize, Sequelize)
-
-//db.user = require("../models/user.model.js").default(sequelize, Sequelize);
-//db.role = require("../models/role.model.js").default(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
     through: "user_roles",
